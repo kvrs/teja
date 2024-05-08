@@ -1,1 +1,19 @@
 
+name: Check for Changes
+
+on:
+  push:
+    branches:
+      - treddy
+
+jobs:
+  check-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: List changes
+        run: |
+          git fetch origin treddy
+          git diff --name-status origin/treddy..HEAD
